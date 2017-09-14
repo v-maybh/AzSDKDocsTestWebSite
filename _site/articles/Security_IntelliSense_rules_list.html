@@ -1,0 +1,1067 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Security IntelliSense Rule List </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Security IntelliSense Rule List ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h2 id="security-intellisense-rule-list"><strong>Security IntelliSense Rule List</strong></h2>
+
+<h3 id="rule---appsecxmldocdtdprocessingparse"><strong>Rule - appsec_xml_doc_dtdprocessing_parse</strong></h3>
+<p><strong>Message</strong>
+<br>
+Do not use Parse option in System.Xml.DtdProcessing. DTD parsing can be exploited towards various DoS and elevation of privilege attacks.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Do not use Parse option in System.Xml.DtdProcessing. DTD parsing can be exploited towards various DoS and elevation of privilege attacks.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---appsecxmldocresolver"><strong>Rule - appsec_xml_doc_resolver</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use XmlResolver carefully in trusted document scenarios. Consider using XmlSecureResolver instead.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Use XmlResolver carefully in trusted document scenarios. Consider using XmlSecureResolver instead.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---appsecxmlprohibitdtdflag"><strong>Rule - appsec_xml_prohibitdtd_flag</strong></h3>
+<p><strong>Message</strong>
+<br>
+Do not set ProhibitDtd property to false. This may increase exposure to DoS and elevation of privilege attacks from DTD parsing.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Do not set ProhibitDtd property to false. This may increase exposure to DoS and elevation of privilege attacks from DTD parsing.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---authnwebcookiecreatesettings1"><strong>Rule - authn_web_cookie_create_settings_1</strong></h3>
+<p><strong>Message</strong>
+<br>
+Set secure property to true wherever possible. Set HttpOnly to true wherever possible. Set shorter expiry time wherever possible.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Set secure property to true wherever possible. Set HttpOnly to true wherever possible. Set shorter expiry time wherever possible.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---authnwebcookiecreatesettings2"><strong>Rule - authn_web_cookie_create_settings_2</strong></h3>
+<p><strong>Message</strong>
+<br>
+Set secure property to true wherever possible. Set HttpOnly to true wherever possible. Set shorter expiry time wherever possible.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Set secure property to true wherever possible. Set HttpOnly to true wherever possible. Set shorter expiry time wherever possible.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---authnwebcookieexpiry"><strong>Rule - authn_web_cookie_expiry</strong></h3>
+<p><strong>Message</strong>
+<br>
+Set cookie expiry to be as short as possible...especially if the cookie is being used for authenticated sessions.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Long cookie expiry periods increase the exposure and exploitability of a cookie in the event that it gets stolen.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---authnwebcookiehttponly"><strong>Rule - authn_web_cookie_httponly</strong></h3>
+<p><strong>Message</strong>
+<br>
+Set httponly to true to reduce risk of JavaScript accessing the cookies
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Set httponly to true to reduce risk of JavaScript accessing the cookies
+<br>
+<br></p>
+<hr>
+<h3 id="rule---authnwebcookiesecureflag"><strong>Rule - authn_web_cookie_secure_flag</strong></h3>
+<p><strong>Message</strong>
+<br>
+Set secure to true to reduce risk of sending cookie over plain HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Setting secure flag to true for a cookie ensures that the browser will never send it over a non-HTTPS connection. This protects the cookie from network layer disclosure.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---authnwebformsauthtickettimeout"><strong>Rule - authn_web_formsauthticket_timeout</strong></h3>
+<p><strong>Message</strong>
+<br>
+Mindful about the expiration time. Keep it short
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Mindful about the expiration time. Keep it short
+<br>
+<br></p>
+<hr>
+<h3 id="rule---authnwebformsprotectionencryption"><strong>Rule - authn_web_formsprotection_encryption</strong></h3>
+<p><strong>Message</strong>
+<br>
+FormsProtection should set to FormsProtectionEnum.All.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+FormsProtection should set to FormsProtectionEnum.All for adequately protecting cookies against various crypto attacks.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---authnwebformsprotectionnone"><strong>Rule - authn_web_formsprotection_none</strong></h3>
+<p><strong>Message</strong>
+<br>
+FormsProtection should set to FormsProtectionEnum.All.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+FormsProtection should set to FormsProtectionEnum.All for adequately protecting cookies against various crypto attacks.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---authnwebformsprotectionvalidation"><strong>Rule - authn_web_formsprotection_validation</strong></h3>
+<p><strong>Message</strong>
+<br>
+FormsProtection should set to FormsProtectionEnum.All.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+FormsProtection should set to FormsProtectionEnum.All for adequately protecting cookies against various crypto attacks.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---azureaadauthorityvalidationturnedoff"><strong>Rule - azure_aad_authority_validation_turned_off</strong></h3>
+<p><strong>Message</strong>
+<br>
+Authority validation should not be disabled for AAD security tokens.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Disabling authority validation implies that any well-formed token will get accepted regardless of which authority signed the token. This is rarely desirable. Do not explicitly set the validation to &#39;false&#39; in the AuthenticationContext. The default value is &#39;true&#39;.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---azureaadavoidcustomtokencaching"><strong>Rule - azure_aad_avoid_custom_token_caching</strong></h3>
+<p><strong>Message</strong>
+<br>
+Custom token cache identified. Allow ADAL to transparently handle any caching needs for tokens.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Do not use custom caches for ADAL tokens. The ADAL library uses a in-memory cache for the storage of tokens when no custom tokencache is provided explicitly to its AuthenticationContext constructor.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---azureaadavoidmemberof"><strong>Rule - azure_aad_avoid_memberof</strong></h3>
+<p><strong>Message</strong>
+<br>
+The &#39;memberOf&#39; method is not transitive, i.e. it doesn&#39;t return nested groups. As a result, it might lead to security bypass in certain cases.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+The &#39;memberOf&#39; method is used for checking the group membership of a user. This method is not transitive, i.e. it doesn&#39;t return nested groups. As a result, it might lead to security bypass in certain cases. Review if the group membership verification logic in the code would work as intended even when the memberOf method is used. However, it is always recommended to use other API methods listed here: <a href="https://msdn.microsoft.com/en-us/library/azure/ad/graph/api/users-operations">https://msdn.microsoft.com/en-us/library/azure/ad/graph/api/users-operations</a> for checking the group membership.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---azureadalavoidaccesstokenincode"><strong>Rule - azure_adal_avoid_accesstoken_in_code</strong></h3>
+<p><strong>Message</strong>
+<br>
+Explicit usage of accesstoken found in the code: access tokens should be handled securely. It is recommended not to store it separately in a persistent storage like databases or files, unless there is a compelling requirement.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+It is recommended to use ADAL library for acquiring the tokens as it saves them securely in an internal in-memory cache in its default configuration.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---azureadalavoidrefreshtokenincode"><strong>Rule - azure_adal_avoid_refreshtoken_in_code</strong></h3>
+<p><strong>Message</strong>
+<br>
+Explicit usage of refreshtoken found in the code: refresh tokens should be handled securely. It is recommended not to store it separately in a persistent storage like database and files, unless there is a compelling requirement.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+It is recommended to use ADAL library for acquiring the tokens as it saves them securely in a internal in-memory cache in its default configuration
+<br>
+<br></p>
+<hr>
+<h3 id="rule---azuresbrnoclientauthentication"><strong>Rule - azure_sbr_no_client_authentication</strong></h3>
+<p><strong>Message</strong>
+<br>
+It is unsafe to use &#39;RelayClientAuthenticationType.None&#39; as it allows clients to connect to the relay without authentication. Use RelayClientAuthenticationType.RelayAccessToken.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+When using a service bus relays, clients have to authenticate to the relay in order to use it to connect to the on-premise endpoint. If &#39;None&#39; is used for RelayClientAuthenticationType, it means any client (without credentials) can connect to the relay and attempt to reach the on-premise service.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---azurestorageblobpublicaccess"><strong>Rule - azure_storage_blob_public_access</strong></h3>
+<p><strong>Message</strong>
+<br>
+The chosen setting for BlobContainerPublicAccessType  will allow &#39;public&#39; access of blobs within this container (without requiring an access token). This should be carefully evaluated in the context of the scenario.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+The chosen setting for BlobContainerPublicAccessType  will allow &#39;public&#39; access of blobs within this container (without requiring an access token). It is recommended to use BlobContainerPublicAccessType.Off unless it absolutely required. Creation of containers with unrestricted access should be carefully evaluated in the context of the scenario.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---azurestoragecontainerpublicaccess"><strong>Rule - azure_storage_container_public_access</strong></h3>
+<p><strong>Message</strong>
+<br>
+The chosen setting for BlobContainerPublicAccessType  will allow &#39;public&#39; access of blobs within this container (without requiring an access token). This should be carefully evaluated in the context of the scenario.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+The chosen setting for BlobContainerPublicAccessType  will allow &#39;public&#39; access of blobs within this container (without requiring an access token). It is recommended to use BlobContainerPublicAccessType.Off unless it absolutely required. Creation of containers with unrestricted access should be carefully evaluated in the context of the scenario.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---azurestoragesasusehttps"><strong>Rule - azure_storage_sas_use_https</strong></h3>
+<p><strong>Message</strong>
+<br>
+The &#39;HttpsOrHttp&#39; option is insecure as it allows use of Http (plaintext) for content request and transfer. Use SharedAccessProtocol.HttpsOnly.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Use of &#39;HttpsOrHttp&#39; implies that both the request content and any headers (including SAS tokens) will get transferred over plaintext. Instead use SharedAccessProtocol.HttpsOnly to ensure the transfer is encrypted.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---azurestoragesastokenvaliditytoolong"><strong>Rule - azure_storage_sastoken_validity_too_long</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use shortest possible token lifetime appropriate for the scenario. See AAD default token expiration times here.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+It is recommended to set appropriate and short lifetime for tokens. Typically access tokens should have a validity period of a few hours (ideally kept as small as practical).
+<br>
+<br></p>
+<hr>
+<h3 id="rule---cryptocertsweakhmac"><strong>Rule - crypto_certs_weak_hmac</strong></h3>
+<p><strong>Message</strong>
+<br>
+The X509Certificate2 class does not support SHA256-based signatures.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+The X509Certificate2 class supports SHA1-based signature algorithms. These are considered weak and inadequate. Consider using RsaCryptoServiceProvider as that supports SHA-256-based signatures.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---cryptodpapiavoidlocalmachineflag"><strong>Rule - crypto_dpapi_avoid_localmachine_flag</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use DataProtectionScope.CurrentUser. LocalMachine will open gates to all the processes running on the computer to unprotect the data.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Use DataProtectionScope.CurrentUser. LocalMachine will open gates to all the processes running on the computer to unprotect the data.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---cryptoencaesweakkeysize"><strong>Rule - crypto_enc_aes_weak_keysize</strong></h3>
+<p><strong>Message</strong>
+<br>
+Encryption key size used for AES must be large enough.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+When using AES encryption, key sizes used should be at least 256 bits. Use of 128 bits is currently allowed but only in backward compatibility scenarios.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---cryptoencavoidpaddingmodeansix923"><strong>Rule - crypto_enc_avoid_padding_mode_ansix923</strong></h3>
+<p><strong>Message</strong>
+<br>
+Try to use PKCS7 with AES wherever possible.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Use the PKCS7 padding mode with AES wherever possible. Other padding modes may lead to subtle crypto vulnerabilities.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---cryptoencavoidpaddingmodeiso10126"><strong>Rule - crypto_enc_avoid_padding_mode_iso10126</strong></h3>
+<p><strong>Message</strong>
+<br>
+Try to use PKCS7 with AES wherever possible.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Use the PKCS7 padding mode with AES wherever possible. Other padding modes may lead to subtle crypto vulnerabilities.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---cryptoencavoidpaddingmodenone"><strong>Rule - crypto_enc_avoid_padding_mode_none</strong></h3>
+<p><strong>Message</strong>
+<br>
+Try to use PKCS7 with AES wherever possible.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Use the PKCS7 padding mode with AES wherever possible. Other padding modes may lead to subtle crypto vulnerabilities.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---cryptoencavoidpaddingmodezeros"><strong>Rule - crypto_enc_avoid_padding_mode_zeros</strong></h3>
+<p><strong>Message</strong>
+<br>
+Try to use PKCS7 with AES wherever possible.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Use the PKCS7 padding mode with AES wherever possible. Other padding modes may lead to subtle crypto vulnerabilities.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---cryptoencciphermodeecb"><strong>Rule - crypto_enc_ciphermode_ecb</strong></h3>
+<p><strong>Message</strong>
+<br>
+Do not use ECB mode for symmetric encryption.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+The ECB mode is prone to various crypto attacks. Use a stronger mode such as CBC instead.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---cryptoencunapprovedalgrijndael"><strong>Rule - crypto_enc_unapproved_alg_rijndael</strong></h3>
+<p><strong>Message</strong>
+<br>
+RijndaelManaged class is not approved for use for symmetric encryption
+<br>
+<br>
+<strong>Description</strong>
+<br>
+The RijndaelManaged class supports algorithm modes which are not FIPS approved. It has also been found weak against certain attacks. Use AesCryptoServiceProvider instead.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---cryptohashweakalgmd5"><strong>Rule - crypto_hash_weak_alg_md5</strong></h3>
+<p><strong>Message</strong>
+<br>
+The MD5 hash algorigthm is weak and must not be used.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+The MD5 hash algorithm has been broken and many practical attacks have been found in scenarios using it. Use SHA256CryptoServiceProvider instead.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---cryptohashweakalgsha1"><strong>Rule - crypto_hash_weak_alg_sha1</strong></h3>
+<p><strong>Message</strong>
+<br>
+The SHA1 hash algorigthm is weak and must not be used.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+The SHA1 hash algorithm has been broken and many practical attacks have been found in scenarios using it. Use SHA256CryptoServiceProvider instead.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---cryptopkirsakeysize"><strong>Rule - crypto_pki_rsa_keysize</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use a keysize of 2048 bits or more for RSA.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using keys of size less than 2048 is not recommended for RSA. Crypto using small key sizes increases risk of getting compromised.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---cryptorngweakrng"><strong>Rule - crypto_rng_weak_rng</strong></h3>
+<p><strong>Message</strong>
+<br>
+The Random class is a cryptographically weak random number generator.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+When used in the context of crypto, random number generators should be cryptographically secure. The class Random does not meet the requirements and should not be used. Consider using RNGCryptoServiceProvider instead.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsbaseaddresshttpclient"><strong>Rule - dp_use_https_baseaddress_httpclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsbaseaddresswebclient"><strong>Rule - dp_use_https_baseaddress_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsdeleteasynchttpclient"><strong>Rule - dp_use_https_deleteasync_httpclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsdownfiletaskaasyncwebclient"><strong>Rule - dp_use_https_downfiletaskaasync_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsdownloaddatawebclient"><strong>Rule - dp_use_https_downloaddata_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsdownloaddataasyncwebclient"><strong>Rule - dp_use_https_downloaddataasync_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsdownloaddatataskasyncwebclient"><strong>Rule - dp_use_https_downloaddatataskasync_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsdownloadfilewebclient"><strong>Rule - dp_use_https_downloadfile_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsdownloadfileasyncwebclient"><strong>Rule - dp_use_https_downloadfileasync_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsdownloadstringwebclient"><strong>Rule - dp_use_https_downloadstring_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsdownloadstringasyncwebclient"><strong>Rule - dp_use_https_downloadstringasync_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsdownloadstringtaskasyncwebclient"><strong>Rule - dp_use_https_downloadstringtaskasync_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsgetasynchttpclient"><strong>Rule - dp_use_https_getasync_httpclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsgetbytearrayasynchttpclient"><strong>Rule - dp_use_https_getbytearrayasync_httpclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsgetstreamasynchttpclient"><strong>Rule - dp_use_https_getstreamasync_httpclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsgetstringasynchttpclient"><strong>Rule - dp_use_https_getstringasync_httpclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsgetwebrequestwebclient"><strong>Rule - dp_use_https_getwebrequest_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpshttprequestmessage1"><strong>Rule - dp_use_https_httprequestmessage_1</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpshttprequestmessage2"><strong>Rule - dp_use_https_httprequestmessage_2</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpspostasynchttpclient"><strong>Rule - dp_use_https_postasync_httpclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsputasynchttpclient"><strong>Rule - dp_use_https_putasync_httpclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsrequesturihttprequestmessage"><strong>Rule - dp_use_https_requesturi_httprequestmessage</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsuploaddatawebclient"><strong>Rule - dp_use_https_uploaddata_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsuploaddataasyncwebclient"><strong>Rule - dp_use_https_uploaddataasync_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsuploaddatataskasyncwebclient"><strong>Rule - dp_use_https_uploaddatataskasync_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsuploadfilewebclient"><strong>Rule - dp_use_https_uploadfile_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsuploadfileasyncwebclient"><strong>Rule - dp_use_https_uploadfileasync_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsuploadfiletaskasyncwebclient"><strong>Rule - dp_use_https_uploadfiletaskasync_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsuploadstringwebclient"><strong>Rule - dp_use_https_uploadstring_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsuploadstringasyncwebclient"><strong>Rule - dp_use_https_uploadstringasync_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsuploadstringtaskasyncwebclient"><strong>Rule - dp_use_https_uploadstringtaskasync_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsuploadvalueswebclient"><strong>Rule - dp_use_https_uploadvalues_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsuploadvaluesasyncwebclient"><strong>Rule - dp_use_https_uploadvaluesasync_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpsuploadvaluestaskasyncwebclient"><strong>Rule - dp_use_https_uploadvaluestaskasync_webclient</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---dpusehttpswebrequest"><strong>Rule - dp_use_https_webrequest</strong></h3>
+<p><strong>Message</strong>
+<br>
+Use HTTPS instead of HTTP.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Using HTTPS ensures that the server is authentic and that the data transferred is encrypted in transit. Do not use plain HTTP.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---inpvalfilenamefromuser"><strong>Rule - inpval_file_name_from_user</strong></h3>
+<p><strong>Message</strong>
+<br>
+If using end user input to create a filename, please validate it carefully to defend against path traversal attacks.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+When end user input is used to determine a filename, it is possible for malicious users to include metacharacters that can lead the code into opening/overwriting/executing an entirely different file than what was intended.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---inpvalopenredirectmvc"><strong>Rule - inpval_open_redirect_mvc</strong></h3>
+<p><strong>Message</strong>
+<br>
+If using end user input to create the redirect URL, please validate it carefully to defend against URL redirection attacks.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+When end user input is used to determine a redirect URL, it is possible for malicious users to craft payloads that can lead to phishing and elevation of privilege attacks. Make sure you validate that the targetURL is local.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---sqlicmdtypesp"><strong>Rule - sqli_cmdtype_sp</strong></h3>
+<p><strong>Message</strong>
+<br>
+Careful! If user input is concatenated directly inside stored procedure when using dynamic queries it may lead to SQL Injection.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Validate user input being included as part of a SQL query. Do not concatenate user inputs directly into query strings...use parameterized queries instead.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---sqlicmdtypetext"><strong>Rule - sqli_cmdtype_text</strong></h3>
+<p><strong>Message</strong>
+<br>
+Careful! Using the Text commandType exposes code to risks of SQL injection.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Validate user input being included as part of a SQL query. Do not concatenate user inputs directly into query strings...use parameterized queries instead.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---sqliexecsqlcmdasyncef"><strong>Rule - sqli_execsqlcmd_async_ef</strong></h3>
+<p><strong>Message</strong>
+<br>
+Careful! Using ExecuteSql with user input may lead to SQL Injection attacks.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Validate user input being included as part of a SQL query. Do not concatenate user inputs directly into query strings...use parameterized queries instead.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---sqliexecsqlcmdef"><strong>Rule - sqli_execsqlcmd_ef</strong></h3>
+<p><strong>Message</strong>
+<br>
+Careful! Using ExecuteSql with user input may lead to SQL Injection attacks.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Validate user input being included as part of a SQL query. Do not concatenate user inputs directly into query strings...use parameterized queries instead.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---sqlisqlcmdcreatesettings1"><strong>Rule - sqli_sqlcmd_create_settings_1</strong></h3>
+<p><strong>Message</strong>
+<br>
+Do an input validation before using the user input in a query. Do not concatenate user inputs directly. Use Parameterized queries.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Do an input validation before using the user input in a query. Do not concatenate user inputs directly. Use Parameterized queries.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---sqlisqlcmdcreatesettings2"><strong>Rule - sqli_sqlcmd_create_settings_2</strong></h3>
+<p><strong>Message</strong>
+<br>
+Do an input validation before using the user input in a query. Do not concatenate user inputs directly. Use Parameterized queries.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Do an input validation before using the user input in a query. Do not concatenate user inputs directly. Use Parameterized queries.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---xssrawhtmlmvcrazor"><strong>Rule - xss_raw_html_mvc_razor</strong></h3>
+<p><strong>Message</strong>
+<br>
+Try to avoid this method as it emits the HTML without encoding.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+Try to avoid this method as it emits the HTML without encoding.
+<br>
+<br></p>
+<hr>
+<h3 id="rule---xsswebvalidaterequestflag"><strong>Rule - xss_web_validaterequest_flag</strong></h3>
+<p><strong>Message</strong>
+<br>
+ValidateRequest should not be set to false. It is a critical defense against XSS attacks in Asp.Net Web Forms.
+<br>
+<br>
+<strong>Description</strong>
+<br>
+ValidateRequest should not be set to false. It is a critical defense against XSS attacks in Asp.Net Web Forms.
+<br>
+<br></p>
+<hr>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

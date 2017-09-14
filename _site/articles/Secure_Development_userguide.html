@@ -1,0 +1,699 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Secure Development </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Secure Development ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="secure-development">Secure Development</h1>
+
+<h3 id="contents">Contents</h3>
+<h3 id="security-verification-tests-svtsecuredevelopmentuserguidemdsecurity-verification-tests-svt-1"><a href="Secure_Development_userguide.html#security-verification-tests-svt-1">Security Verification Tests (SVT)</a></h3>
+<ul>
+<li><a href="Secure_Development_userguide.html#overview">Overview</a></li>
+<li><a href="Secure_Development_userguide.html#execute-svts-for-all-controls-in-all-resources-in-a-given-subscription">Execute SVTs for all controls in all resources in a given subscription</a></li>
+<li><a href="Secure_Development_userguide.html#execute-svts-for-specific-resource-groups-or-tagged-resources">Execute SVTs for specific resource groups (or tagged resources)</a></li>
+<li><a href="Secure_Development_userguide.html#execute-svts-for-a-specific-resource">Execute SVTs for a specific resource</a></li>
+<li><a href="Secure_Development_userguide.html#execute-svts-for-a-specific-resource-type">Execute SVTs for a specific resource type</a></li>
+<li><a href="Secure_Development_userguide.html#control-attestation">Control Attestation</a></li>
+<li><a href="Secure_Development_userguide.html#faqs">FAQs</a>
+### <a href="Secure_Development_userguide.html#express-route-connected-virtual-networks-er-vnet-1">Express Route-connected Virtual Networks (ER-vNet)</a></li>
+</ul>
+<hr>
+<h2 id="security-verification-tests-svt">Security Verification Tests (SVT)</h2>
+<blockquote><p> <strong>Prerequisites:</strong>
+For all commands in this feature it is assumed that you have:</p>
+<ol>
+<li>Logged in to your Azure account using Login-AzureRmAccount from a PowerShell ISE.</li>
+<li>Selected a subscription using Set-AzureRmContext.</li>
+</ol>
+</blockquote>
+<h3 id="overview">Overview</h3>
+<p>Security Verifications Tests (or SVTs) represent the core of security testing functionality of the 
+AzSDK. For all the prominent features in Azure (e.g., Web Apps, Storage, SQL DB, Key Vault, etc.), 
+the AzSDK ccan perform automated security checks against Azure resources of those types. 
+These checks are based on security standards and best practices as applicable for sensitive corporate 
+data at Microsoft. In general, these are likely to be applicable for most scenarios that involve 
+processing sensitive data in other environments.</p>
+<p>An SVT for a particular resource type basically examines a resource of that type within a specified 
+resource group and runs a set of security control checks pertinent to that resource type. 
+The outcome of the analysis is printed on the console during SVT execution and a CSV and a LOG file are 
+also generated for subsequent use.</p>
+<p>The CSV file and LOG file are generated under a subscription-specific sub-folder in the folder<br><em>%LOCALAPPDATA%\Microsoft\AzSDKLogs\Sub_[yourSubscriptionName]</em><br>E.g.<br>C:\Users\UserName\AppData\Local\Microsoft\AzSDKLogs\Sub_[yourSubscriptionName]\20170331_142819</p>
+<p>There are multiple ways that SVTs can be executed:</p>
+<ol>
+<li>Scan all resources in a subscription. This is the simplest approach and simply enumerates 
+all resources in a specific subscription and runs security checks against all the known resource 
+types found.</li>
+<li>Scan all resources in specific resource group(s). In this option, you can target resources
+within one or more resource group. The AzSDK simply enumerates all resources in the resource group(s) 
+and runs security checks..</li>
+<li>Scan a specific resource. In this approach, you can target a specific (individual) resource.</li>
+<li>Scan a specific resource type. In this approach, you can target a specific resource type (e.g., Storage)
+by specifying the &#39;resource type&#39; value.</li>
+</ol>
+<p>These options are described with examples below.  </p>
+<p><a href="Secure_Development_userguide.html#contents">Back to top…</a></p>
+<h3 id="execute-svts-for-all-controls-of-all-resources-in-a-given-subscription">Execute SVTs for all controls of all resources in a given subscription</h3>
+<p>The cmdlet below checks security control state and generates a status report of all Azure resources 
+in a given subscription:  </p>
+<pre><code class="lang-PowerShell">Get-AzSDKAzureServicesSecurityStatus -SubscriptionId &lt;SubscriptionId&gt;
+</code></pre><p>The parameters required are:</p>
+<ul>
+<li>SubscriptionId – Subscription ID is the identifier of your Azure subscription.  </li>
+</ul>
+<blockquote><p><strong>Note</strong> Although this command is simple, it may take time proportionate to the number of 
+resources in your subscription and may not be ideal for &#39;shared&#39; subscriptions. Typically, 
+you would want to scan a specific application (organized under one or more resource groups or 
+using tags). The subsequent options provide ability to narrow down the scope of the scan.</p>
+</blockquote>
+<p><a href="Secure_Development_userguide.html#contents">Back to top…</a>  </p>
+<h3 id="execute-svts-for-specific-resource-groups-or-tagged-resources">Execute SVTs for specific resource groups (or tagged resources)</h3>
+<p>The cmdlet below scans all Azure resources in the specified resource groups within a subscription and 
+generates a status report:</p>
+<pre><code class="lang-PowerShell">Get-AzSDKAzureServicesSecurityStatus -SubscriptionId &lt;SubscriptionId&gt; -ResourceGroupNames &lt;ResourceGroupNames&gt;
+</code></pre><p>The parameters required are:</p>
+<ul>
+<li>SubscriptionId – Subscription ID is the identifier of your Azure subscription. </li>
+<li>ResourceGroupNames – Comma separated list of resource groups that hold related resources for an Azure subscription.</li>
+</ul>
+<p>The cmdlet below scans all resources with specific tag names/values under a given subscription:  </p>
+<ol>
+<li><p>Single Tag</p>
+<pre><code class="lang-PowerShell"> Get-AzSDKAzureServicesSecurityStatus -SubscriptionId &lt;SubscriptionId&gt; -TagName &lt;TagName&gt; -TagValue &lt;TagValue&gt;
+</code></pre></li>
+<li><p>Multiple Tags</p>
+<pre><code class="lang-PowerShell"> Get-AzSDKAzureServicesSecurityStatus -SubscriptionId &lt;SubscriptionId&gt; -Tag &lt;TagHashset&gt;
+</code></pre></li>
+</ol>
+<p>The parameters required are:</p>
+<ul>
+<li>SubscriptionId – Subscription ID is the identifier of your Azure subscription. </li>
+<li>TagName – Key to identify the resources.</li>
+<li>TagValue – Value to identify the resources.</li>
+<li>Tag – The tag filter for Azure resource. The expected format is @{tagName1=$null} or @{tagName = &#39;tagValue&#39;; tagName2=&#39;value1&#39;}.  </li>
+</ul>
+<p><a href="Secure_Development_userguide.html#contents">Back to top…</a></p>
+<h3 id="execute-svts-for-a-specific-resource">Execute SVTs for a specific resource</h3>
+<p>The cmdlet below scans a single Azure resource within a specific resource group in a subscription and generates a status report:</p>
+<pre><code class="lang-PowerShell">Get-AzSDKAzureServicesSecurityStatus -SubscriptionId &lt;SubscriptionId&gt; -ResourceGroupNames &lt;ResourceGroupName&gt; -ResourceName &lt;ResourceName&gt;
+</code></pre><p>The parameters required are:</p>
+<ul>
+<li>SubscriptionId – Subscription ID is the identifier of your Azure subscription. </li>
+<li>ResourceGroupNames – Name of the resource group that holds the individual resource to be scanned.</li>
+<li>ResourceName – Name of the resource. </li>
+</ul>
+<blockquote><p><strong>Note</strong>: In the command above, &#39;ResourceName&#39; should be the short name as used in Azure 
+and shown in the portal (as opposed to the fully qualified domain name (FQDN) which may 
+apply to some resource types such as storage blobs or SQL DB).  </p>
+</blockquote>
+<p><a href="Secure_Development_userguide.html#contents">Back to top…</a></p>
+<h3 id="execute-svts-for-a-specific-resource-type">Execute SVTs for a specific resource type</h3>
+<p>The cmdlet below scans all resources for a specific Azure resource type in a subscription (and a resource group [optional]):</p>
+<ol>
+<li>Using Azure resource type
+<code>PowerShell
+Get-AzSDKAzureServicesSecurityStatus -SubscriptionId &lt;SubscriptionId&gt; [-ResourceGroupNames &lt;ResourceGroupNames&gt;] -ResourceType &lt;ResourceType&gt;</code></li>
+</ol>
+<p>The parameters required are:</p>
+<ul>
+<li>SubscriptionId – Subscription ID is the identifier of your Azure subscription. </li>
+<li>[Optional] ResourceGroupNames  – Name of the container that holds related resource under an Azure subscription. Comma separated values are allowed.</li>
+<li>ResourceType – Resource type as defined by Azure. E.g.: Microsoft.KeyVault/vaults. Run command &#39;Get-AzSDKSupportedResourceTypes&#39; to get the list of supported types.</li>
+</ul>
+<ol>
+<li>Using a user-friendly resource type name
+<code>PowerShell
+Get-AzSDKAzureServicesSecurityStatus -SubscriptionId &lt;SubscriptionId&gt; [-ResourceGroupNames &lt;ResourceGroupName&gt;] -ResourceTypeName &lt;ResourceTypeName&gt;</code></li>
+</ol>
+<p>The parameters required are:</p>
+<ul>
+<li>SubscriptionId – Subscription ID is the identifier of your Azure subscription. </li>
+<li>[Optional] ResourceGroupNames – Name of the container that holds related resource under an Azure subscription. Comma separated values are allowed.</li>
+<li>ResourceTypeName – Friendly name of resource type. E.g.: KeyVault. Run command &#39;Get-AzSDKSupportedResourceTypes&#39; to get the list of supported values.  </li>
+</ul>
+<p><a href="Secure_Development_userguide.html#contents">Back to top…</a></p>
+<h3 id="control-attestation">Control Attestation</h3>
+<h4 id="overview">Overview</h4>
+<p>The attestation feature empowers users to support scenarios where human input is required to augment or override the default control 
+evaluation status from the AzSDK. These may be situations such as:</p>
+<ul>
+<li>the AzSDK has generated the list of &#39;Owners&#39; or &#39;Contributors&#39; for a resource but someone needs to have a look at the list and ratify that 
+these are indeed the correct people, or</li>
+<li>the AzSDK has marked a control as failed. However, given the additional contextual knowledge, the application owner wants to ignore the control failure, or</li>
+<li>the AzSDK has marked a control as failed and the issue is a valid security concern. However, due to other constraints, 
+the application owner wants to defer the fix for later and request a risk ack.</li>
+</ul>
+<p>In all such situations, there is usually a control result that is based on the technical evaluation (e.g., Verify, Failed, etc.) that has to 
+be combined with the user&#39;s input in order to determine the overall or effective control result. The user is said to have &#39;attested&#39; such controls 
+and, after the process is performed once, AzSDK remembers it and generates an effective control result for subsequent control scans <em>until</em> there 
+is a state change.</p>
+<p>The attestation feature is implemented via a new switch called <em>AttestControls</em> which can be specified in any of the standard security scan cmdlets
+of the AzSDK. When this switch is specified, the AzSDK first performs a scan of the target resource(s) like it is business as usual and, once
+the scan is complete, it enters a special interactive &#39;attest mode&#39; where it walks through each resource and relevant attestable controls
+and captures inputs from the user and records them in the subscription (along with details about the person who attested, the time, etc.). 
+After this, for all future scans on the resource(s), AzSDK will show the effective control evaluation results. Various options are provided to support
+different attestation scenarios (e.g., expiry of attestations, edit/change/delete previous attestations, attest only a subset of controls, etc.). 
+These are described below. Also, for &#39;stateful&#39; controls (e.g., &quot;are these the right IP addresses to permit on the firewall?&quot;), the attestation
+state is auto-reset if there is any change in &#39;state&#39; (e.g., someone added a new IP to the list).</p>
+<p>Lastly, due to the governance implications, the ability to attest controls is available to a subset of subscription users. This is described in
+the permissions required section below. </p>
+<h4 id="starting-attestation">Starting attestation</h4>
+<p>The AzSDK subscription and services scan cmdlets now support a new switch called <em>AttestControls</em>. When this switch is specified, 
+AzSDK enters &#39;attest&#39; mode immediately after a scan is completed. This ensures that attestation is done on the basis of the most current
+control statuses.</p>
+<p>All controls that have a technical evaluation status of anything other than &#39;Passed&#39; (i.e., &#39;Verify&#39; or &#39;Failed&#39; or &#39;Manual&#39; or &#39;Error&#39;) are considered 
+valid targets for attestation.</p>
+<p>To manage attestation flow effectively, 4 options are provided for the <em>AttestControls</em> switch to specify which subset of controls to target for attestation. These are described below:</p>
+<table>
+<thead>
+<tr>
+<th>Attestation Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NotAttested</td>
+<td>Attest only those controls which have not been attested yet.</td>
+</tr>
+<tr>
+<td>AlreadyAttested</td>
+<td>Attest those controls which have past attestations. To re-attest or clear attestation.</td>
+</tr>
+<tr>
+<td>All</td>
+<td>Attest all controls which can be attested (including those that have past attestations).</td>
+</tr>
+<tr>
+<td>None</td>
+<td>N/A.</td>
+</tr>
+</tbody>
+</table>
+<p>For example, to attest controls corresponding to a subscription security scan, run the command below:</p>
+<pre><code class="lang-PowerShell">$subscriptionId = &lt;Your SubscriptionId&gt;
+Get-AzSDKSubscriptionSecurityStatus -SubscriptionId $subscriptionId -AttestControls NotAttested -DoNotOpenOutputFolder  
+</code></pre><p>As shown in the images, the command enters &#39;attest&#39; mode after completing a scan and does the following:</p>
+<p>a) For each resource that was scanned, if a control is a target for attestation, control details (such as description, severity, etc.) and 
+the current evaluation result are displayed (to help the user)
+b) The user gets to choose whether they want to attest the control
+c) If the user chooses to attest, attestation details (attest status, justification, etc.) are captured
+d) This is repeated for all attestable controls and each resource.</p>
+<p> Sample attestation workflow in progress:
+ <img src="../Images/02_SVT_Attest_1.png" alt="02_SVT_Attest_1"> </p>
+<p> Sample summary of attestation after workflow is completed:
+ <img src="../Images/02_SVT_Attest_2.png" alt="02_SVT_Attest_2"> </p>
+<p> Attestation details corresponding to each control (e.g., justification, user name, etc.) are also captured in the CSV file as shown below:
+ <img src="../Images/02_SVT_Attest_3.png" alt="02_SVT_Attest_3"> </p>
+<p> The attestation process for application resources is similar to that for subscriptions. For example, the command below shows how to 
+trigger attestation for a specific resource in an RG:</p>
+<pre><code class="lang-PowerShell">$subscriptionId = &lt;Your SubscriptionId&gt;
+$resourceGroupName = &lt;ResourceGroup Name&gt;
+$resourceName = &lt;ResourceName&gt;
+Get-AzSDKAzureServicesSecurityStatus -SubscriptionId $subscriptionId -ResourceGroupNames $resourceGroupName -ResourceName $resourceName -AttestControls NotAttested -DoNotOpenOutputFolder 
+</code></pre><p>If, for any reason, the attestations of previously attested controls need to be revisited, it can be done by simply changing the &#39;NotAttested&#39; flag in the commands above with &#39;AlreadyAttested&#39;.</p>
+<h4 id="how-azsdk-determines-the-effective-control-result">How AzSDK determines the effective control result</h4>
+<p>During the attestation workflow, the user gets to provide attestation (sub)status for each control attested. This basically represents the user&#39;s attestation preference w.r.t.
+a specific control (i.e., whether the user wants to override/augment the AzSDK status and treat the control as passed or whether the user agrees with the AzSDK status but wants to defer
+fixing the issue for the time being):</p>
+<table>
+<thead>
+<tr>
+<th>Attestation Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td>There is no attestation done for a given control. User can select this option duriung the workflow to skip the attestation</td>
+</tr>
+<tr>
+<td>NotAnIssue</td>
+<td>User has verified the control data and attesting it as not a issue with proper justification</td>
+</tr>
+<tr>
+<td>NotFixed</td>
+<td>User has verified the control data and attesting it as not fixed with proper justification stating the future fix plan</td>
+</tr>
+</tbody>
+</table>
+<p>The following table shows the complete &#39;state machine&#39; that is used by AzSDK to support control attestation. 
+The columns are described as under:</p>
+<ul>
+<li>&#39;Control Scan Result&#39; represents the technical evaluation result </li>
+<li>&#39;Attestation Status&#39; represents the user choice from an attestation standpoint</li>
+<li>&#39;Effective Status&#39; reflects the effective control status (combination of technical status and user input)</li>
+<li>&#39;Requires Justification&#39; indicates whether the corresponding row requires a justification comment</li>
+<li>&#39;Comments&#39; outlines an example scenario that would map to the row</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Control Scan Result</th>
+<th>Attestation Status</th>
+<th>Effective Status</th>
+<th>Requires Justification</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Passed</td>
+<td>None</td>
+<td>Passed</td>
+<td>No</td>
+<td>No need for attestation. Control has passed outright!</td>
+</tr>
+<tr>
+<td>Verify</td>
+<td>None</td>
+<td>Verify</td>
+<td>No</td>
+<td>User has to ratify based on manual examination of AzSDK evaluation log. E.g., SQL DB firewall IPs list.</td>
+</tr>
+<tr>
+<td>Verify</td>
+<td>NotAnIssue</td>
+<td>Passed</td>
+<td>Yes</td>
+<td>User has ratified in the past. E.g., SQL firewall IPs scenario, where all are IPs are legitimate.</td>
+</tr>
+<tr>
+<td>Verify</td>
+<td>NotFixed</td>
+<td>RiskAck</td>
+<td>Yes</td>
+<td>Valid security issue but a fix cannot be implemented immediately. E.g., A &#39;deprecated&#39; account was found in the subscription. However, the user wants to check any dependecies before removal.</td>
+</tr>
+<tr>
+<td>Failed</td>
+<td>None</td>
+<td>Failed</td>
+<td>No</td>
+<td>Control has failed but has not been attested. Perhaps a fix is in the works...</td>
+</tr>
+<tr>
+<td>Failed</td>
+<td>NotAnIssue</td>
+<td>Passed</td>
+<td>Yes</td>
+<td>Control has failed but the issue is benign in a given context business. E.g., Failover instance for a non BC-DR critical service</td>
+</tr>
+<tr>
+<td>Failed</td>
+<td>NotFixed</td>
+<td>RiskAck</td>
+<td>Yes</td>
+<td>Control has failed. The issue is not benign but the user wishes to defer fixing it for later. E.g., AAD is not enabled for Azure SQL DB.</td>
+</tr>
+<tr>
+<td>Error</td>
+<td>None</td>
+<td>Error</td>
+<td>No</td>
+<td>There was an error during evaluation. Manual verification is needed and is still pending.</td>
+</tr>
+<tr>
+<td>Error</td>
+<td>NotAnIssue</td>
+<td>Passed</td>
+<td>Yes</td>
+<td>There was an error during evaluation. However, control has been manually verified by the user.</td>
+</tr>
+<tr>
+<td>Error</td>
+<td>NotFixed</td>
+<td>RiskAck</td>
+<td>Yes</td>
+<td>There was an error during evaluation. Manually verification by the user indicates a valid security issue.</td>
+</tr>
+<tr>
+<td>Manual</td>
+<td>None</td>
+<td>Manual</td>
+<td>No</td>
+<td>The control is not automated and has to be manually verified. Verification is still pending.</td>
+</tr>
+<tr>
+<td>Manual</td>
+<td>NotAnIssue</td>
+<td>Passed</td>
+<td>Yes</td>
+<td>The control is not automated and has to be manually verified. User has verified that there&#39;s no security concern.</td>
+</tr>
+<tr>
+<td>Manual</td>
+<td>NotFixed</td>
+<td>RiskAck</td>
+<td>Yes</td>
+<td>The control is not automated and has to be manually verified. User has reviewed and found a security issue to be fixed.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>The following table describes the possible effective control evaluation results (taking attestation into consideration).</p>
+<table>
+<thead>
+<tr>
+<th>Control Scan Result</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Passed</td>
+<td>Fully automated control. Azure resource/subscription configuration meeting the AzSDK control requirement</td>
+</tr>
+<tr>
+<td>Verfiy</td>
+<td>Semi automated control. It would emit the required data in the log files which can be validated by the user/auditor.e.g. SQL DB IP ranges</td>
+</tr>
+<tr>
+<td>Failed</td>
+<td>Fully automated contorl. Azure resource/subscription configuration not meeting the AzSDK control requirement</td>
+</tr>
+<tr>
+<td>Error</td>
+<td>Automated control. Currently failing due to some exception. User needs to validate manually</td>
+</tr>
+<tr>
+<td>Manual</td>
+<td>No automation as of now. User needs to validate manually</td>
+</tr>
+<tr>
+<td>RiskAck</td>
+<td>Risk to be Acknowledged. It would trainsition to this control if the user is trying to attest a failed control</td>
+</tr>
+</tbody>
+</table>
+<h4 id="permissions-required-for-attesting-controls">Permissions required for attesting controls:</h4>
+<p>The attestation feature internally stores state in a storage account in a resource group called AzSDKRG. (This RG is also used by other features in the AzSDK for stateful scenarios.)
+If this RG has already been created, then a user needs &#39;Owner&#39; permission to it.
+If this RG is not present (as is possible when none of the scenarios that internally create this RG have been run yet), then the user needs &#39;Owner&#39; or &#39;Contributor&#39; permission to the subscription.</p>
+<blockquote><p><strong>Note</strong>: The attestation data stored in the AzSDKRG is opaque from an end user standpoint. Any attempts to access/change it may impact correctness of security evaluation results.</p>
+</blockquote>
+<h3 id="faqs">FAQs</h3>
+<h4 id="what-azure-resource-types-that-can-be-checked">What Azure resource types that can be checked?</h4>
+<p>Below resource types can be checked for validating the security controls </p>
+<table>
+<thead>
+<tr>
+<th>Resource Name</th>
+<th>Resource Type Name</th>
+<th>Resource Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Analysis Services</td>
+<td>AnalysisService</td>
+<td>Microsoft.AnalysisServices/servers</td>
+</tr>
+<tr>
+<td>App Services</td>
+<td>AppService</td>
+<td>Microsoft.Web/sites</td>
+</tr>
+<tr>
+<td>Batch accounts</td>
+<td>Batch</td>
+<td>Microsoft.Batch/batchAccounts</td>
+</tr>
+<tr>
+<td>CDN profiles</td>
+<td>CDN</td>
+<td>Microsoft.Cdn/profiles</td>
+</tr>
+<tr>
+<td>Cloud Services</td>
+<td>CloudService</td>
+<td>Microsoft.ClassicCompute/domainNames</td>
+</tr>
+<tr>
+<td>Data Factories</td>
+<td>DataFactory</td>
+<td>Microsoft.DataFactory/dataFactories</td>
+</tr>
+<tr>
+<td>Data Lake Analytics</td>
+<td>DataLakeAnalytics</td>
+<td>Microsoft.DataLakeAnalytics/accounts</td>
+</tr>
+<tr>
+<td>Data Lake Store</td>
+<td>DataLakeStore</td>
+<td>Microsoft.DataLakeStore/accounts</td>
+</tr>
+<tr>
+<td>Express Route-connected Virtual Networks</td>
+<td>ERvNet</td>
+<td>Microsoft.Network/virtualNetworks</td>
+</tr>
+<tr>
+<td>Event Hubs</td>
+<td>EventHub</td>
+<td>Microsoft.Eventhub/namespaces</td>
+</tr>
+<tr>
+<td>Key Vaults</td>
+<td>KeyVault</td>
+<td>Microsoft.KeyVault/vaults</td>
+</tr>
+<tr>
+<td>Logic Apps</td>
+<td>LogicApps</td>
+<td>Microsoft.Logic/Workflows</td>
+</tr>
+<tr>
+<td>Notification Hubs</td>
+<td>NotificationHub</td>
+<td>Microsoft.NotificationHubs/namespaces/notificationHubs</td>
+</tr>
+<tr>
+<td>On-premises Data Gateways</td>
+<td>ODG</td>
+<td>Microsoft.Web/connectionGateways</td>
+</tr>
+<tr>
+<td>Redis Caches</td>
+<td>RedisCache</td>
+<td>Microsoft.Cache/Redis</td>
+</tr>
+<tr>
+<td>Search services</td>
+<td>Search</td>
+<td>Microsoft.Search/searchServices</td>
+</tr>
+<tr>
+<td>Service Bus</td>
+<td>ServiceBus</td>
+<td>Microsoft.ServiceBus/namespaces</td>
+</tr>
+<tr>
+<td>Service Fabric clusters</td>
+<td>ServiceFabric</td>
+<td>Microsoft.ServiceFabric/clusters</td>
+</tr>
+<tr>
+<td>SQL Databases</td>
+<td>SQLDatabase</td>
+<td>Microsoft.Sql/servers</td>
+</tr>
+<tr>
+<td>Storage Accounts</td>
+<td>StorageAccount</td>
+<td>Microsoft.Storage/storageAccounts</td>
+</tr>
+<tr>
+<td>Traffic Manager profiles</td>
+<td>TrafficManager</td>
+<td>Microsoft.Network/trafficmanagerprofiles</td>
+</tr>
+<tr>
+<td>Virtual Machines</td>
+<td>VirtualMachine</td>
+<td>Microsoft.Compute/virtualMachines</td>
+</tr>
+<tr>
+<td>Virtual Networks</td>
+<td>VirtualNetwork</td>
+<td>Microsoft.Network/virtualNetworks</td>
+</tr>
+</tbody>
+</table>
+<p>This list continues to grow so best way to confirm is to look at the output of the following command:  </p>
+<pre><code class="lang-PowerShell">Get-AzSDKSupportedResourceTypes  
+</code></pre><blockquote><p> We regularly add SVT coverage for more Azure features. Please write to us (mailto:AzSDKSupExt@microsoft.com) if you are looking for SVTs for a service not listed here.  </p>
+</blockquote>
+<h4 id="what-do-the-different-columns-in-the-status-report-mean">What do the different columns in the status report mean?</h4>
+<p>Status report will be in CSV format and will contain below columns </p>
+<ul>
+<li>ControlID - Unique ID for security control.</li>
+<li>Status – { Passed | Failed | Verify | Manual | Error} <ul>
+<li>Passed: The resource complies with the security control.</li>
+<li>Failed: The resource does not comply with the security control.</li>
+<li>Verify: The status needs to be verified using the data generated by the automated script. This is usually an indication that some level of human judgment is required in order to attest to the control status.</li>
+<li>Manual: The control is not automated (yet). It should be manually implemented and/or validated.</li>
+<li>Error: An error occurred due to which the control state could not be determined.</li>
+</ul>
+</li>
+<li>FeatureName - Azure feature name e.g. AzureAppService, AzureSQLDB etc.</li>
+<li>ResourceName - Azure resource name. </li>
+<li>ChildResourceName - Sub resource name of the Azure resource. E.g. for SQL Server, controls validating the databases will have the resource name as ‘SQLServerName’ and child resource name as &#39;SQLDBName&#39; whereas features having no sub resources will have same value for resource name and child resource name.</li>
+<li>ResourceGroupName - Resource group name for resource name.</li>
+<li>ControlType - Control type can be ‘TCP’, ‘Best Practice’ or ‘Information’. </li>
+<li>Automated - Yes or No<br>Note that not all security checks are automatable. The &#39;non-automated&#39; checks (things that have to be manually validated/checked) are also listed in the reports from a completeness standpoint.</li>
+<li>Description - Security control description.</li>
+<li>Reference - Link to detailed document/explanation.</li>
+<li>Recommendation - Recommended steps to implement a fix for a failed control.  </li>
+</ul>
+<h4 id="how-can-i-find-out-what-to-do-for-controls-that-are-marked-as-manual">How can I find out what to do for controls that are marked as &#39;manual&#39;?</h4>
+<p>Refer [TBD] for details on the security controls defined by AzSDK for Azure features. You can also email to AzSDKSupExt@microsoft.com or reach out to your security point of contact for any queries.  </p>
+<h4 id="how-can-i-implement-fixes-for-the-failed-ones-which-have-no-auto-fix-available">How can I implement fixes for the failed ones which have no auto-fix available?</h4>
+<p>Refer the recommendations provided in the output CSV file for the security controls defined by AzSDK. You can also email to AzSDKSupExt@microsoft.com or reach out to your security point of contact for any queries.  </p>
+<h4 id="troubleshooting">Troubleshooting</h4>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Subscription xxxx was not found in tenant. Please verify that the subscription exists in this tenant….&quot;</td>
+<td>Provide the valid Subscription Id to the &#39;Subscription&#39; parameter while running the cmdlets that accept subscription id as the parameter.</td>
+</tr>
+<tr>
+<td>File xxxx cannot be loaded because the execution of scripts is disabled on this system… &quot;</td>
+<td>By default, PowerShell restricts execution of all scripts. Execute below cmdlet to fix this issue: <strong>Set-ExecutionPolicy -ExecutionPolicy Unrestricted</strong></td>
+</tr>
+</tbody>
+</table>
+<p><a href="Secure_Development_userguide.html#secure-development">Back to top…</a></p>
+<hr>
+<h1 id="express-route-connected-virtual-networks-er-vnet">Express Route-connected Virtual Networks (ER-vNet)</h1>
+<p><strong>Summary</strong><br>The following cmdlet can be used to scan the secure configuration of an ExpressRoute-connected virtual network (referred to as ERVnet below):</p>
+<pre><code class="lang-PowerShel"> Get-AzSDKExpressRouteNetworkSecurityStatus -SubscriptionId &lt;SubscriptionId&gt;
+</code></pre><p>This cmdlet assumes that the vNet connected to ExpressRoute circuit is in a ResourceGroup named &#39;ERNetwork&#39; or &#39;ERNetwork-DMZ&#39;. 
+If you have the vNet in a different resource group then the <code>-ResourceGroup</code> parameter can be used.</p>
+<p>Just like other SVTs, this will create a summary &quot;.CSV&quot; file of the control evaluation and a detailed
+&quot;.LOG&quot; file that includes more information about each control and the outcome.</p>
+<p>The following core checks are currently performed by this utility:</p>
+<ul>
+<li>There should not be any Public IPs (i.e., NICs with PublicIP) on ER-vNet VMs.</li>
+<li>There should not be multiple NICs on ER-vNet VMs.</li>
+<li>The &#39;EnableIPForwarding&#39; flag cannot set to true for NICs in the ER-vNet.</li>
+<li>There should not be any NSGs on the GatewaySubnet of the ER-vNet.</li>
+<li>There should not be a UDR on <em>any</em> subnet in an ER-vNet</li>
+<li>There should not be another virtual network gateway (GatewayType = Vpn) in an ER-vNet.</li>
+<li>There should not be any virtual network peerings on an ER-vNet.</li>
+<li>Only internal load balancers (ILBs) may be used inside an ER-vNet.</li>
+</ul>
+<p>Additionally the following other &#39;protective&#39; checks are also done: </p>
+<ul>
+<li>Ensuring that the resource lock that is setup to keep these resources from being deleted is intact.</li>
+<li>Ensuring that the RBAC permissions for the account used to track compliance are intact.</li>
+<li>Setting up alerts to fire for any of the above actions in the subscription.</li>
+</ul>
+<p><a href="Secure_Development_userguide.html#contents">Back to top…</a></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

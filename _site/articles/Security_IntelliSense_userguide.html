@@ -1,0 +1,272 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Security IntelliSense (Dev-SecIntel) </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Security IntelliSense (Dev-SecIntel) ">
+    <meta name="generator" content="docfx 2.24.0.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="security-intellisense-dev-secintel">Security IntelliSense (Dev-SecIntel)</h1>
+
+<h3 id="contents">Contents</h3>
+<h4 id="basicssecurityintellisenseuserguidemdbasics-1"><a href="Security_IntelliSense_userguide.html#basics-1">Basics</a></h4>
+<ul>
+<li><a href="Security_IntelliSense_userguide.html#what-is-security-intellisense">What is Security IntelliSense?</a></li>
+<li><a href="Security_IntelliSense_userguide.html#how-do-i-enable-security-intellisense-on-my-dev-box">How do I enable Security IntelliSense on my dev box?</a></li>
+<li><a href="Security_IntelliSense_userguide.html#is-there-a-sample-i-can-use-to-see-how-it-works">Is there a sample I can use to see how it works?</a>
+#### <a href="Security_IntelliSense_userguide.html#rules-1">Rules</a></li>
+<li><a href="Security_IntelliSense_userguide.html#what-secure-coding-rules-are-currently-covered">What &#39;secure coding&#39; rules are currently covered?</a></li>
+<li><a href="Security_IntelliSense_userguide.html#how-are-the-rules-updated-do-i-need-to-refresh-the-plugin-periodically">How are the rules updated? Do I need to refresh the plugin periodically?</a></li>
+<li><a href="Security_IntelliSense_userguide.html#can-i-add-my-own-rules-over-and-above-the-default-set">Can I add my own rules over and above the default set?</a></li>
+<li><a href="Security_IntelliSense_userguide.html#can-i-mask-a-particular-rule-or-rules">Can I &#39;mask&#39; a particular rule or rules?</a></li>
+<li><a href="Security_IntelliSense_userguide.html#can-i-change-the-recommended-code-for-a-rule-eg-i-want-to-recommend-gcm-instead-of-cbc-mode">Can I change the &#39;recommended&#39; code for a rule?</a>
+#### <a href="Security_IntelliSense_userguide.html#actions-1">Actions</a></li>
+<li><a href="Security_IntelliSense_userguide.html#what-should-i-do-to-remove-the-extension">What should I do to remove the extension?</a></li>
+<li><a href="Security_IntelliSense_userguide.html#what-default-compiler-actions-are-configured">What default compiler actions are configured?</a></li>
+<li><a href="Security_IntelliSense_userguide.html#can-i-customize-actions-for-my-dev-box--team-eg-change-error---warnings-etc">Can I customize actions for my dev box / team? (E.g. change Error -&gt; Warnings etc.)</a></li>
+</ul>
+<hr>
+<blockquote><p>Note: Security IntelliSense extension works on Visual Studio 2015 Update 3 or later</p>
+</blockquote>
+<!-- #TODO# check links at top of each main page. --> 
+<p><a href="Security_IntelliSense_userguide.html#contents">Back to top…</a></p>
+<h3 id="basics">Basics:</h3>
+<h3 id="what-is-security-intellisense">What is Security IntelliSense?</h3>
+<p>Security IntelliSense augments standard Visual Studio IntelliSense feature with secure coding knowledge. This makes it possible to get &#39;inline&#39; assistance for fixing potential security issues while writing code. Code that is vulnerable or not policy compliant is flagged with red or green squiggles based on the level of severity.</p>
+<p>In the current drop, we have support for the following features:</p>
+<ul>
+<li>About 80 rules that cover a variety of scenarios such as: <ul>
+<li>various Azure PaaS API related secure coding rules</li>
+<li>ADAL-based authentication best practices</li>
+<li>Common Crypto errors</li>
+<li>Classic App Sec and Web App Sec issues</li>
+</ul>
+</li>
+<li>Rule are auto-updated without needing to reinstall the plug-in. The plug-in periodically checks if new rules have been published to a central rule store and updates its local rule set based on that. </li>
+</ul>
+<p>The screenshots below show the core functionality at work:</p>
+<ul>
+<li>Error and warning indications for incorrect and possibly vulnerable code:
+  (E.g., use of custom token cache in ADAL scenario)  </li>
+</ul>
+<p><img src="../Images/02_SecIntel_Ex_1.png" alt="SecIntel_Ex_1"></p>
+<ul>
+<li>Suggestions for corrections/compliant coding practices:
+  (E.g., Instead of Random, the RNGCryptoServiceProvider class should be used in a crypto context.)<br><img src="../Images/02_SecIntel_Ex_2.png" alt="02_SecIntel_Ex_2">  </li>
+</ul>
+<p><a href="Security_IntelliSense_userguide.html#contents">Back to top…</a>  </p>
+<h3 id="how-do-i-enable-security-intellisense-on-my-dev-box">How do I enable Security IntelliSense on my dev box?</h3>
+<ul>
+<li><p>Open Visual Studio 2015 or 2017</p>
+</li>
+<li><p>Go to <strong>Tools</strong> -&gt; <strong>Extensions and Updates</strong> -&gt; In the left sidebar select <strong>Online</strong> -&gt; <strong>Visual Studio Gallery</strong> and search for <strong>Security IntelliSense</strong> in the right sidebar</p>
+</li>
+</ul>
+<p><img src="../Images/02_SecIntel_VSGallery_Download.png" alt="02_SecIntel_VSGallery_Download"></p>
+<ul>
+<li>Select Security IntelliSense item and click <strong>Download</strong></li>
+<li>After download completes, in the pop-up click <strong>Install</strong></li>
+<li>After installation completes, <strong>restart Visual Studio</strong></li>
+</ul>
+<p><a href="Security_IntelliSense_userguide.html#contents">Back to top…</a></p>
+<h3 id="is-there-a-sample-i-can-use-to-see-how-it-works">Is there a sample I can use to see how it works?</h3>
+<ul>
+<li>We have a sample project on GitHub that you can use. Run the command below to clone the repo. 
+If you don&#39;t have Git setup in your machine, please visit <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a> to download it.</li>
+</ul>
+<pre><code>    git clone https://github.com/azsdk/azsdk-secintel-samples
+</code></pre><ul>
+<li>After cloning the repo, navigate to <strong>azsdk-secintel-samples</strong> -&gt; <strong>SecIntelSample</strong> and 
+open the <strong>SecIntelSample.sln</strong> in Visual Studio (after completing the Security IntelliSense 
+extension installation per steps from above).</li>
+<li>Build the solution (this will fetch any requisite Nuget packages)</li>
+<li><p>Go to View-&gt;Solution Explorer and then open one of demo files (e.g., &quot;CryptoSample.cs&quot;) in the VS editor. </p>
+<ul>
+<li>You should see SecIntel in action -- i.e., code that is in violation of the rules in use for 
+the SecIntel VSIX plugin will appear as red-squigglies (errors) and green-squigglies (warnings).<br><img src="../Images/02_SecIntel_Suggestion.png" alt="02_SecIntel_Suggestion"></li>
+</ul>
+</li>
+<li><p>Note: In the currently implemented behavior of the extension, &#39;errors&#39; don’t actually fail the build. 
+We will change this behavior in an upcoming sprint. After that anything that is considered an &#39;error&#39; will start failing 
+the build. This will be a useful feature when integrating with CICD pipelines.</p>
+<!-- #TODO# is it controllable by clients? -->
+</li>
+</ul>
+<p><a href="Security_IntelliSense_userguide.html#contents">Back to top…</a></p>
+<h3 id="rules">Rules:</h3>
+<h3 id="what-secure-coding-rules-are-currently-covered">What &#39;secure coding&#39; rules are currently covered?</h3>
+<p>The following are some of the rules we support in current build (some are &#39;warnings&#39; others &#39;error&#39;) -</p>
+<ul>
+<li>Azure:<ul>
+<li>Use of relays without client authentication</li>
+<li>Creation of shared access policy without enforcing HTTPS explicitly</li>
+<li>Creation of shared access policy with an overly long expiry period
+-Creation of container with access set to &#39;Public&#39;</li>
+<li>Creation of a blob with access set to &#39;Public&#39;</li>
+</ul>
+</li>
+<li>ADAL/Graph usage:<ul>
+<li>Use of simple member access as opposed to transitive search</li>
+<li>Explicit handling of access and refresh tokens as opposed to letting ADAL manage them transparently</li>
+<li>Disabling &#39;Authority&#39; validation when fetching a token via ADAL</li>
+<li>Use of custom mechanisms to cache the tokens (should let ADAL handle them transparently)</li>
+</ul>
+</li>
+<li>Crypto:<ul>
+<li>Use of Random instead of RNGCryptoServiceProvider class</li>
+<li>Use of MD5 for hashing instead of SHA256CryptoServiceProvider</li>
+<li>Use of SHA1 for hashing instead of SHA256CryptoServiceProvider</li>
+<li>Use of RijndaelManaged instead of AesCryptoServiceProvider</li>
+<li>Use of key sizes that are considered inadequate</li>
+<li>Use of X509Certificate2 class (that might lead to a SHA1 based HMAC as opposed to a SHA256-based one).</li>
+</ul>
+</li>
+</ul>
+<p>For a complete list of Security IntelliSense rules please go <a href="Security_IntelliSense_rules_list.html">here</a></p>
+<p><a href="Security_IntelliSense_userguide.html#contents">Back to top…</a></p>
+<h3 id="how-are-the-rules-updated-do-i-need-to-refresh-the-plugin-periodically">How are the rules updated? Do I need to refresh the plugin periodically?</h3>
+<ul>
+<li>Rule are auto-updated without the need to reinstall the plugin. Currently we have 
+defined 5 different rule templates upon which individual rules are based. We have the ability to 
+deploy new rules that use the existing templates silently in the background. </li>
+<li>Once in a while we might add entirely new &#39;rule templates&#39;. When that happens, a new version of 
+the extension will need to be downloaded. When that happens will include a notification of the same 
+in our release announcements.</li>
+</ul>
+<p><a href="Security_IntelliSense_userguide.html#contents">Back to top…</a></p>
+<h3 id="can-i-add-my-own-rules-over-and-above-the-default-set">Can I add my own rules over and above the default set?</h3>
+<ul>
+<li>This will be included in the next month. It is a natural extension of the current behavior. We 
+will merely need to include support for a locally managed rules file which has rules that adhere to 
+the supported rule templates.</li>
+</ul>
+<p><a href="Security_IntelliSense_userguide.html#contents">Back to top…</a></p>
+<h3 id="can-i-mask-a-particular-rule-or-rules">Can I &#39;mask&#39; a particular rule or rules?</h3>
+<ul>
+<li>This is in our backlog. We will add it in a future sprint.</li>
+</ul>
+<p><a href="Security_IntelliSense_userguide.html#contents">Back to top…</a></p>
+<h3 id="can-i-change-the-recommended-code-for-a-rule-eg-i-want-to-recommend-gcm-instead-of-cbc-mode">Can I change the &#39;recommended&#39; code for a rule? (e.g., I want to recommend GCM instead of CBC mode)</h3>
+<ul>
+<li>This is in our backlog. We will add it in a future sprint.</li>
+</ul>
+<p><a href="Security_IntelliSense_userguide.html#contents">Back to top…</a></p>
+<h3 id="actions">Actions:</h3>
+<h3 id="what-should-i-do-to-remove-the-extension">What should I do to remove the extension?</h3>
+<ul>
+<li>Go to &quot;Tools&quot; -&gt; &quot;Extensions and Updates&quot; menu option in Visual Studio and search for &quot;Security&quot;.<ul>
+<li>If you have the extension installed, you will see a screen such as below with options to 
+&quot;Disable&quot; or &quot;Uninstall&quot; the extension.</li>
+</ul>
+</li>
+<li>Click &quot;Uninstall&quot; and restart Visual Studio.
+<img src="../Images/02_SecIntel_VSGallery.png" alt="02_SecIntel_VSGallery">  </li>
+</ul>
+<p><a href="Security_IntelliSense_userguide.html#contents">Back to top…</a></p>
+<h3 id="what-default-compiler-actions-are-configured">What default compiler actions are configured?</h3>
+<ul>
+<li>Most of the rules configured are of severity &quot;Warning&quot;</li>
+</ul>
+<p><a href="Security_IntelliSense_userguide.html#contents">Back to top…</a></p>
+<h3 id="can-i-customize-actions-for-my-dev-box--team-eg-change-error---warnings-etc">Can I customize actions for my dev box / team? (E.g. change Error -&gt; Warnings etc.)</h3>
+<ul>
+<li>Currently we do not support it. We have it in our pipeline to support it.  </li>
+</ul>
+<p><a href="Security_IntelliSense_userguide.html#contents">Back to top…</a></p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Copyright © 2015-2017 Microsoft<br>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
